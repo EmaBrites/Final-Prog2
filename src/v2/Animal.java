@@ -1,3 +1,5 @@
+package v2;
+
 public class Animal {
     private int id;
     private int edad;
@@ -73,7 +75,6 @@ public class Animal {
         this.ternerosParidos = ternerosParidos;
     }
 
-    // @Override todo que onda?
     public boolean equals(Animal animal) {
         return id == animal.getId();
     }

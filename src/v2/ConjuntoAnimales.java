@@ -1,19 +1,15 @@
+package v2;
+
 import java.util.ArrayList;
 
-public class Rodeo {
+public abstract class ConjuntoAnimales {
     private int id;
     private String nombre;
-    private int cantidadAnimales;
-    private double pesoPromedio;
-    private double pesoTotal;
     private ArrayList<Animal> animales;
 
-    public Rodeo(int id, String nombre, int cantidadAnimales, double pesoPromedio, double pesoTotal) {
+    public ConjuntoAnimales(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.cantidadAnimales = cantidadAnimales;
-        this.pesoPromedio = pesoPromedio;
-        this.pesoTotal = pesoTotal;
         this.animales = new ArrayList<>();
     }
 
@@ -33,18 +29,6 @@ public class Rodeo {
         this.nombre = nombre;
     }
 
-    public int getCantidadAnimales() {
-        return cantidadAnimales;
-    }
-
-    public double getPesoPromedio() {
-        return pesoPromedio;
-    }
-
-    public double getPesoTotal() {
-        return pesoTotal;
-    }
-
     public ArrayList<Animal> getAnimales() {
         return new ArrayList<>(animales);
     }
@@ -52,19 +36,20 @@ public class Rodeo {
     public void addAnimal(Animal animal){
         if (!this.animales.contains(animal)) {
             this.animales.add(animal);
-            cantidadAnimales++;
-            pesoTotal += animal.getPeso();
-            pesoPromedio = pesoTotal / cantidadAnimales;
         }
     }
 
     public void removeAnimal(Animal animal){
         if (this.animales.contains(animal)) {
             this.animales.remove(animal);
-            cantidadAnimales--;
-            pesoTotal -= animal.getPeso();
-            pesoPromedio = pesoTotal / cantidadAnimales;
         }
     }
 
+    public abstract int getCantidadAnimales();
+
+    public abstract double getPesoTotal();
+
+    public double getPesoPromedio() {
+        return this.getPesoTotal() / this.getCantidadAnimales();
+    }
 }
